@@ -71,7 +71,7 @@ class ExpUnlearning(Exp):
             self.logger.info('training target models')
 
             self.time = {}
-            for shard in range(self.num_shards):
+            for shard in range(self.args['num_shards']):
                 self.time[shard] = self._train_model(run, shard)
 
     def aggregate(self, run):
@@ -88,7 +88,7 @@ class ExpUnlearning(Exp):
         return self.aggregate_f1_score
 
     def unlearning_time_statistic(self):
-        if self.args['is_train_target_model'] and self.num_shards != 1:
+        if self.args['is_train_target_model'] and self.args['num_shards'] != 1:
             self.community_to_node = self.data_store.load_community_data()
             node_list = []
             for key, value in self.community_to_node.items():
@@ -105,14 +105,14 @@ class ExpUnlearning(Exp):
             # calculate the total unlearning time and group unlearning time
             group_unlearning_time = []
             node_unlearning_time = []
-            for shard in range(self.num_shards):
+            for shard in range(self.args['num_shards']):
                 if belong_community.count(shard) != 0:
                     group_unlearning_time.append(self.time[shard])
                     node_unlearning_time.extend([float(self.time[shard]) for j in range(belong_community.count(shard))])
 
             return node_unlearning_time
 
-        elif self.args['is_train_target_model'] and self.num_shards == 1:
+        elif self.args['is_train_target_model'] and self.args['num_shards'] == 1:
             return self.time[0]
 
         else:
