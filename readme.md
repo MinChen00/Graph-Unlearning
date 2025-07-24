@@ -2,7 +2,7 @@
 
 This code is the implementation of  graph unlearning.
 
-#### Code Strcuture
+#### Code Structure
 
 ```
 .
@@ -39,7 +39,7 @@ pip install torch-geometric
 
 ###### Graph Partition
 
-See more parameters settings in parameter_parser.py at ***##graph partition parameters##***.
+See more parameter settings in parameter_parser.py at ***##graph partition parameters##***.
 
 ```bash
 $ --partition true --partition_method lpa --is_constrained true
@@ -49,7 +49,7 @@ $ --partition true --partition_method sage_km --is_constrained true
 
 ###### Aggregation
 
-See more parameters settings in parameter_parser.py at ***##training parameters##***.
+See more parameter settings in parameter_parser.py at ***##training parameters##***.
 
 ```bash
 Use '--aggregator' choose the desired aggregation method, choose from ['mean', 'majority', 'optimal'].
@@ -58,10 +58,21 @@ Use '--aggregator' choose the desired aggregation method, choose from ['mean', '
 
 ###### Unlearning
 
-See more parameters settings in parameter_parser.py at ***##unlearning parameters##***.
+See more parameter settings in parameter_parser.py at ***##unlearning parameters##***.
 
 ```bash
-Use '--repartition' to decide whether unlearning the graph partition.
+Use '--repartition' to decide whether to unlearn the graph partition.
 
-Use '--unlearning_request' to choose the unlearning request distributions from ['random', 'adaptive', 'dependant', 'top1', 'last5'].
+Use '--unlearning_request' to choose the unlearning request distributions from ['random', 'adaptive', 'dependent', 'top1', 'last5'].
+```
+
+### Citation
+
+```
+@inproceedings{chen2022unlearning,
+  author    = {Min Chen and Zhikun Zhang and Tianhao Wang and Michael Backes and Mathias Humbert and Yang Zhang},
+  title     = {Graph Unlearning},
+  booktitle = {{ACM} {SIGSAC} Conference on Computer and Communications Security (CCS)}
+  year      = {2022}
+}
 ```
